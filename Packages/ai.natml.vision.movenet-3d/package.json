@@ -1,0 +1,28 @@
+{
+    "name": "ai.natml.vision.movenet-3d",
+    "version": "1.0.0",
+    "displayName": "MoveNet 3D",
+    "description": "Realtime 3D pose detection with MoveNet.",
+    "unity": "2020.3",
+    "dependencies": {
+        "ai.natml.vision.movenet": "1.0.4"
+    },
+    "keywords": [
+        "natml",
+        "machine learning",
+        "ml",
+        "mocap",
+        "motion capture",
+        "face detection",
+        "mediapipe",
+        "pose detection",
+        "augmented reality"
+    ],
+    "author": {
+        "name": "NatML",
+        "email": "hi@natml.ai",
+        "url": "https://github.com/natmlx"
+    },
+    "license": "Apache-2.0",
+    "repository": "github:natml-hub/MoveNet-3D"
+}
