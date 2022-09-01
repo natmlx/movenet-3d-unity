@@ -69,7 +69,7 @@ The pose contains 3D world positions for each detected keypoint.
 ___
 
 ## Requirements
-- Unity 2020.3+
+- Unity 2021.2+
 
 ## Quick Tips
 - Discover more ML models on [NatML Hub](https://hub.natml.ai).

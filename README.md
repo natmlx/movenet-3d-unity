@@ -2,10 +2,18 @@
 
 ![demo](demo.gif)
 
-Sample project showing 3D pose detection in augmented reality with NatML and ARFoundation in Unity Engine.
+Realtime 3D pose detection in augmented reality with NatML and Unity ARFoundation.
+
+## Setup Instructions
+Retrieve your access key from [NatML Hub](https://hub.natml.ai/profile) and add it to your Project Settings. Note that using this predictor requires an active [NatML Cloud](https://www.natml.ai/pricing) subscription:
+
+![project settings](https://github.com/natmlx/NatDevice/raw/main/.media/key.png)
+
+## Using in Existing Project
+[See the package README](Packages/ai.natml.vision.movenet-3d/README.md#installing-movenet-3d) for installing the standalone MoveNet 3D predictor in an existing Unity project.
 
 ## Requirements
-- Unity 2020.3+
+- Unity 2021.2+
 
 ## Supported Platforms
 - Android API level 24+

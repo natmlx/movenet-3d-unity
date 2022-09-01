@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "displayName": "MoveNet 3D",
     "description": "Realtime 3D pose detection with MoveNet.",
-    "unity": "2020.3",
+    "unity": "2021.2",
     "dependencies": {
         "ai.natml.vision.movenet": "1.0.4"
     },
