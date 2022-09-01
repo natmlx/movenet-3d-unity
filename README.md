@@ -10,7 +10,7 @@ Retrieve your access key from [NatML Hub](https://hub.natml.ai/profile) and add 
 ![project settings](https://github.com/natmlx/NatDevice/raw/main/.media/key.png)
 
 ## Using in Existing Project
-[See the package README](Packages/ai.natml.vision.movenet-3d/README.md#installing-movenet-3d) for installing the standalone MoveNet 3D predictor in an existing Unity project.
+[See the package README](Packages/ai.natml.vision.movenet-3d) for installing the standalone MoveNet 3D predictor in an existing Unity project.
 
 ## Requirements
 - Unity 2021.2+
