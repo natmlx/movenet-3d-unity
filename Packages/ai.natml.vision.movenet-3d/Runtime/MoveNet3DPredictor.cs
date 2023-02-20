@@ -1,11 +1,12 @@
 /* 
 *   MoveNet 3D
-*   Copyright (c) 2022 NatML Inc. All Rights Reserved.
+*   Copyright © 2023 NatML Inc. All Rights Reserved.
 */
 
 namespace NatML.Vision {
 
     using System;
+    using System.Threading.Tasks;
     using NatML.Features;
     using NatML.Internal;
     using NatML.Types;
@@ -14,20 +15,9 @@ namespace NatML.Vision {
     /// MoveNet 3D body pose predictor.
     /// This predictor uses environment depth to project the detected body pose into world space.
     /// </summary>
-    public sealed partial class MoveNet3DPredictor {
+    public sealed partial class MoveNet3DPredictor : IMLPredictor<MoveNet3DPredictor.Pose> {
 
         #region --Client API--
-        /// <summary>
-        /// Create a MoveNet 3D predictor.
-        /// </summary>
-        /// <param name="model">MoveNet ML model.</param>
-        /// <param name="cameraManager">AR camera manager.</param>
-        /// <param name="smoothing">Apply smoothing filter to detected points.</param>
-        public MoveNet3DPredictor (MLModel model, bool smoothing = true) {
-            this.model = model as MLEdgeModel;
-            this.predictor = new MoveNetPredictor(model, smoothing);
-        }
-
         /// <summary>
         /// Detect the body pose in an image.
         /// </summary>
@@ -50,12 +40,34 @@ namespace NatML.Vision {
             var result = new Pose(pose, imageType, depthFeature);
             return result;
         }
+
+        /// <summary>
+        /// Dispose the predictor and release resources.
+        /// </summary>
+        public void Dispose () => predictor.Dispose();
+
+        /// <summary>
+        /// Create the MoveNet 3D predictor.
+        /// </summary>
+        /// <param name="smoothing">Apply smoothing filter to detected points.</param>
+        /// <param name="configuration">Model configuration.</param>
+        /// <param name="accessKey">NatML access key.</param>
+        public static async Task<MoveNet3DPredictor> Create (
+            bool smoothing = true,
+            MLEdgeModel.Configuration configuration = null,
+            string accessKey = null
+        ) {
+            var movenet = await MoveNetPredictor.Create(smoothing, configuration, accessKey);
+            var predictor = new MoveNet3DPredictor(movenet);
+            return predictor;
+        }
         #endregion
 
 
         #region --Operations--
-        private readonly MLEdgeModel model;
         private readonly MoveNetPredictor predictor;
+
+        public MoveNet3DPredictor (MoveNetPredictor predictor) => this.predictor = predictor;
         #endregion
     }
 }

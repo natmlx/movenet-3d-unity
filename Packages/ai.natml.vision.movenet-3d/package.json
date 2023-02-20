@@ -1,11 +1,11 @@
 {
     "name": "ai.natml.vision.movenet-3d",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "displayName": "MoveNet 3D",
     "description": "Realtime 3D pose detection with MoveNet.",
     "unity": "2021.2",
     "dependencies": {
-        "ai.natml.vision.movenet": "1.0.4"
+        "ai.natml.vision.movenet": "1.0.6"
     },
     "keywords": [
         "natml",
@@ -24,5 +24,5 @@
         "url": "https://github.com/natmlx"
     },
     "license": "Apache-2.0",
-    "repository": "github:natml-hub/MoveNet-3D"
+    "repository": "github:natml-hub/movenet-3d"
 }

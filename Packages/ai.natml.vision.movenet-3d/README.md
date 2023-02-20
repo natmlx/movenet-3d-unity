@@ -13,7 +13,7 @@ Add the following items to your Unity project's `Packages/manifest.json`:
     }
   ],
   "dependencies": {
-    "ai.natml.vision.movenet-3d": "1.0.0"
+    "ai.natml.vision.movenet-3d": "1.0.1"
   }
 }
 ```
@@ -21,17 +21,11 @@ Add the following items to your Unity project's `Packages/manifest.json`:
 ## Predicting 3D Pose in Augmented Reality
 These steps assume that you are starting with an AR scene in Unity with an `ARSession` and `ARSessionOrigin`. In your pose detection script, first create the MoveNet 3D predictor:
 ```csharp
-MLModelData modelData;
-MLModel model;
 MoveNet3DPredictor predictor;
 
-void Start () {
-    // Fetch model data from NatML Hub
-    modelData = await MLModelData.FromHub("@natsuite/movenet-3d");
-    // Deserialize the model
-    model = modelData.Deserialize();
+async void Start () {
     // Create the MoveNet 3D predictor
-    predictor = new MoveNet3DPredictor(model);
+    predictor = await MoveNet3DPredictor.Create();
 }
 ```
 
@@ -44,21 +38,18 @@ public AROcclusionManager occlusionManager;
 
 void Update () {
     // Get the camera image
-    if (!cameraManager.TryAcquireLatestCpuImage(out var image))
-        return;
-    // Get depth image
-    if (!occlusionManager.TryAcquireEnvironmentDepthCpuImage(out var depth)) {
-        image.Dispose();
-        return;
-    }
-    // Create an ARFoundation image feature
-    var imageFeature = new MLXRCpuImageFeature(image);
-    (imageFeature.mean, imageFeature.std) = modelData.normalization;
-    imageFeature.aspectMode = modelData.aspectMode;
-    // Create an ARFoundation depth feature
-    var depthFeature = new MLXRCpuDepthFeature(depth, arCamera);
-    // Predict
-    MoveNet3DPredictor.Pose pose = predictor.Predict(imageFeature, depthFeature);
+    if (cameraManager.TryAcquireLatestCpuImage(out var image))
+        // Get the depth image
+        if (occlusionManager.TryAcquireEnvironmentDepthCpuImage(out var depth)) {
+            // Create an ML feature for the camera image
+            var imageType = image.GetFeatureType();
+            var imageFeature = new MLImageFeature(imageType.width, imageType.height);
+            imageFeature.CopyFrom(image);
+            // Create an ML feature for the depth image
+            var depthFeature = new MLXRCpuDepthFeature(depth, arCamera);
+            // Predict
+            MoveNet3DPredictor.Pose pose = predictor.Predict(imageFeature, depthFeature);
+        }
 }
 ```
 
@@ -74,8 +65,7 @@ ___
 ## Quick Tips
 - Discover more ML models on [NatML Hub](https://hub.natml.ai).
 - See the [NatML documentation](https://docs.natml.ai/unity).
-- Join the [NatML community on Discord](https://hub.natml.ai/community).
-- Discuss [NatML on Unity Forums](https://forum.unity.com/threads/open-beta-natml-machine-learning-runtime.1109339/).
+- Join the [NatML community on Discord](https://natml.ai/community).
 - Contact us at [hi@natml.ai](mailto:hi@natml.ai).
 
 Thank you very much!

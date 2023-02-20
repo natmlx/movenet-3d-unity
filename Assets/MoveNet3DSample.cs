@@ -1,6 +1,6 @@
 /* 
 *   MoveNet 3D
-*   Copyright (c) 2022 NatML Inc. All Rights Reserved.
+*   Copyright © 2023 NatML Inc. All Rights Reserved.
 */
 
 namespace NatML.Examples {
@@ -21,18 +21,13 @@ namespace NatML.Examples {
         [Header(@"Visualizer")]
         public MoveNet3DVisualizer visualizer;
 
-        MLModelData modelData;
-        MLModel model;
-        MoveNet3DPredictor predictor;
+        private MLImageFeature imageFeature;
+        private MoveNet3DPredictor predictor;
 
         async void Start () {
             Debug.Log("Fetching model data from NatML...");
-            // Fetch model data from NatML Hub
-            modelData = await MLModelData.FromHub("@natsuite/movenet-3d");
-            // Deserialize the model
-            model = modelData.Deserialize();
             // Create the MoveNet 3D predictor
-            predictor = new MoveNet3DPredictor(model);
+            predictor = await MoveNet3DPredictor.Create();
         }
 
         void Update () {
@@ -44,9 +39,9 @@ namespace NatML.Examples {
                 // Get depth image
                 if (occlusionManager.TryAcquireEnvironmentDepthCpuImage(out var depth)) using (depth) {
                     // Create image feature
-                    var imageFeature = new MLXRCpuImageFeature(image);
-                    (imageFeature.mean, imageFeature.std) = modelData.normalization;
-                    imageFeature.aspectMode = modelData.aspectMode;
+                    var imageType = image.GetFeatureType();
+                    imageFeature ??= new MLImageFeature(imageType.width, imageType.height);
+                    imageFeature.CopyFrom(image);
                     // Create depth feature
                     var depthFeature = new MLXRCpuDepthFeature(depth, arCamera);
                     // Predict
@@ -57,8 +52,8 @@ namespace NatML.Examples {
         }
 
         void OnDisable () {
-            // Dispose the model
-            model?.Dispose();
+            // Dispose the predictor
+            predictor?.Dispose();
         }
     }
 }
