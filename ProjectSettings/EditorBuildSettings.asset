@@ -12,4 +12,5 @@ EditorBuildSettings:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: da1bcde9bdafe49de88f2153e68a1319, type: 2}
     UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: 3550e81b0f0b347ffa2d873d5ad03207, type: 2}
     ai.natml.hub.settings: {fileID: 11400000, guid: 6fa432618e3aa4c4badcdebe85cc48ff, type: 2}
+    com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: 63fd76b476bdc4a75845d899947afb5c, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 5f8b0168b156e443ea6e05741438f12e, type: 2}

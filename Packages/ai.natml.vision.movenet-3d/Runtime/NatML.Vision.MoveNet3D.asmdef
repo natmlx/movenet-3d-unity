@@ -1,7 +1,7 @@
 {
     "name": "NatML.Vision.MoveNet3D",
     "references": [
-        "NatML.ML",
+        "NatML.Runtime",
         "NatML.Vision.MoveNet"
     ],
     "includePlatforms": [

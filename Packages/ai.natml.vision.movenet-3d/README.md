@@ -9,11 +9,11 @@ Add the following items to your Unity project's `Packages/manifest.json`:
     {
       "name": "NatML",
       "url": "https://registry.npmjs.com",
-      "scopes": ["ai.natml"]
+      "scopes": ["ai.fxn", "ai.natml"]
     }
   ],
   "dependencies": {
-    "ai.natml.vision.movenet-3d": "1.0.1"
+    "ai.natml.vision.movenet-3d": "1.0.2"
   }
 }
 ```
@@ -60,7 +60,7 @@ The pose contains 3D world positions for each detected keypoint.
 ___
 
 ## Requirements
-- Unity 2021.2+
+- Unity 2022.3+
 
 ## Quick Tips
 - Discover more ML models on [NatML Hub](https://hub.natml.ai).

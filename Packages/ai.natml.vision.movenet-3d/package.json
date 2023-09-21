@@ -1,11 +1,11 @@
 {
     "name": "ai.natml.vision.movenet-3d",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "displayName": "MoveNet 3D",
     "description": "Realtime 3D pose detection with MoveNet.",
-    "unity": "2021.2",
+    "unity": "2022.3",
     "dependencies": {
-        "ai.natml.vision.movenet": "1.0.6"
+        "ai.natml.vision.movenet": "1.0.9"
     },
     "keywords": [
         "natml",

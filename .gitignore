@@ -9,10 +9,15 @@ Logs/
 .gradle/
 .vs/
 
+# Function
+ProjectSettings/Function.asset
+
 # NatML
-Assets/NatML/
-Assets/NatML.meta
+ProjectSettings/NatML.asset
 ProjectSettings/NatMLHub.asset
+
+# VideoKit
+ProjectSettings/VideoKit.asset
 
 # Misc
 .DS_Store

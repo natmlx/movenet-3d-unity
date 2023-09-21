@@ -134,7 +134,7 @@ namespace NatML.Vision {
                 for (var i = 0; i < pose.Count; ++i) {
                     var keypoint = pose[i];
                     var scaledKeypoint = new Vector2(xRatio * (keypoint.x - 0.5f) + 0.5f, yRatio * (keypoint.y - 0.5f) + 0.5f);
-                    var worldPoint = depthMap.ViewportToWorldPoint(scaledKeypoint);
+                    var worldPoint = depthMap.Unproject(scaledKeypoint);
                     keypoints[i] = new Vector4(worldPoint.x, worldPoint.y, worldPoint.z, keypoint.z);
                 }
             }

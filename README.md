@@ -7,17 +7,17 @@ Realtime 3D pose detection in augmented reality with NatML and Unity ARFoundatio
 ## Setup Instructions
 Retrieve your access key from [NatML Hub](https://hub.natml.ai/profile) and add it to your Project Settings:
 
-![project settings](https://github.com/natmlx/NatDevice/raw/main/.media/key.png)
+![project settings](https://github.com/natmlx/videokit/raw/main/Media/set-access-key.gif)
 
 ## Using in Existing Project
 [See the package README](Packages/ai.natml.vision.movenet-3d) for installing the standalone MoveNet 3D predictor in an existing Unity project.
 
 ## Requirements
-- Unity 2021.2+
+- Unity 2022.3+
 
 ## Supported Platforms
 - Android API level 24+
-- iOS 14+
+- iOS 13+
 - Unity Editor with [ARFoundation Remote](https://assetstore.unity.com/packages/tools/utilities/ar-foundation-remote-2-0-201106):
     - macOS 10.15+ (Apple Silicon and Intel)
     - Windows 10+ (64-bit only)
